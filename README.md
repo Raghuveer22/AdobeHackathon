@@ -42,5 +42,5 @@ Make sure to install the dependencies using the appropriate package manager or `
 
 This project is licensed under the [MIT License](LICENSE).
 ### Thanks for visting
-![AutoCat](https://user-images.githubusercontent.com/74038190/212741999-016fddbd-617a-4448-8042-0ecf907aea25.gif)
+<img src="https://user-images.githubusercontent.com/74038190/212741999-016fddbd-617a-4448-8042-0ecf907aea25.gif" height="500">
 

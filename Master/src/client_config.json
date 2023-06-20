@@ -1,0 +1,5 @@
+{
+    "connectTimeout": "4000",
+    "readTimeout": "20000",
+    "region": "eu"
+}

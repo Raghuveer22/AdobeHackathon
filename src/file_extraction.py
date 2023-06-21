@@ -131,9 +131,13 @@ def save_json(file, source_folder, save_folder, execution_context):
             extracted_file_name = zip_file.namelist()[0]  # Get the name of the first extracted file
             extracted_file_path = os.path.join(save_folder, extracted_file_name)
             zip_file.extractall(path=save_folder)
-        new_file_path = os.path.join(save_folder, new_file_name)
-        os.rename(extracted_file_path, new_file_path)  # Rename the extracted file to the desired name
-        return 200  # Indicate successful file processing
+        try:
+            new_file_path = os.path.join(save_folder, new_file_name)
+            os.rename(extracted_file_path, new_file_path)
+            return 200  
+        except :
+            logging.log(f"e")# Rename the extracted file to the desired name
+         # Indicate successful file processing
     else:
         return 404  # Indicate file not found
 

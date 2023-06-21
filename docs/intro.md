@@ -53,4 +53,4 @@ Before setting up API credentials, make sure you have completed the following st
 
       - Replace `region`,`connectTimeout`,`readTimeout` with your actual requirements.
 
-### Now run the code as described in README.md
+### Now run the code as described in [`README.md`](../../README.md)

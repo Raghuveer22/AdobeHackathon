@@ -50,7 +50,7 @@ project/
    - Enable the "Adobe PDF Services API" for your project.
    - Generate the API credentials (JWT authentication) by following the provided documentation and guidelines.
 2. **Set Up Project:**
-   - Download the private key file and set up the PDF Services API credentials provided by the Adobe Developer Console. For more details, refer to the `intro.md` file for setup instructions.
+   - Download the private key file and set up the PDF Services API credentials provided by the Adobe Developer Console. For more details, refer to the [`intro.md`](Master\docs\intro.md) file for setup instructions.
    - Move the private key file to the base folder of your project (the same folder where the README file is located).
 3. **Update Client Configuration:**
    - Open the `pdf_operations.py` file located in the `src` folder of your project.

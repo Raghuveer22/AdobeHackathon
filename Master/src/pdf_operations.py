@@ -1,7 +1,6 @@
 import os
 import logging
 import tempfile
-from pathlib import Path
 from adobe.pdfservices.operation.auth.credentials import Credentials
 from adobe.pdfservices.operation.client_config import ClientConfig
 from adobe.pdfservices.operation.pdfops.options.extractpdf.extract_pdf_options import ExtractPDFOptions
@@ -12,10 +11,8 @@ from adobe.pdfservices.operation.auth.credentials import Credentials
 from adobe.pdfservices.operation.exception.exceptions import ServiceApiException, ServiceUsageException, SdkException
 from adobe.pdfservices.operation.execution_context import ExecutionContext
 from adobe.pdfservices.operation.io.file_ref import FileRef
-from adobe.pdfservices.operation.pdfops.options.autotagpdf.autotag_pdf_options import AutotagPDFOptions
 from adobe.pdfservices.operation.internal.api.dto.request.autotagpdf.autotag_pdf_output import AutotagPDFOutput
 from adobe.pdfservices.operation.pdfops.autotag_pdf_operation import AutotagPDFOperation
-from adobe.pdfservices.operation.pdfops.options.extractpdf.table_structure_type import TableStructureType
 
 # Constant Literals
 BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

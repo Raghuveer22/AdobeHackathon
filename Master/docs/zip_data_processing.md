@@ -1,55 +1,63 @@
-# PDF Data Extraction and Processing Documentation
+# ZIP File Extraction and JSON Processing
 
-This documentation provides an overview and instructions for using the code that extracts data from a PDF file and processes it.
+This module provides functions for extracting and processing the contents of a ZIP file and performing operations on JSON files. The operations include extracting elements from a JSON file and extracting data from a JSON file.
 
-## Code Overview
+## Table of Contents
+- [Dependencies](#dependencies)
+- [Functions](#functions)
+  - [extract_and_process(zip_file_path)](#extract_and_process)
+  - [extract_elements_from_json(json_file_path)](#extract_elements_from_json)
+  - [get_data(json_file_path, exception)](#get_data)
 
-The provided code consists of several functions and utility methods:
+## Dependencies
 
-- `extract_and_process(zip_file_path)`: This function extracts data from a ZIP file containing a `structuredData.json` file. It reads the contents of the JSON file, processes the data, and returns the extracted information as a list.
+This module relies on the following dependencies:
+- `zipfile`
+- `json`
+- `os`
+- `tempfile`
+- `logging`
+- `re`
 
-- `extract_elements_from_json(json_file_path)`: This utility method extracts the elements from a JSON file and returns them as a list. It is specifically designed to handle the `structuredData.json` file.
+Make sure to install the required dependencies to use this module.
 
-- `get_data(json_file_path, exception)`: This function retrieves the data from the extracted JSON file. It calls `extract_elements_from_json` to obtain the elements and performs additional processing on the data. If the `exception` parameter is set to 0, it checks for the presence of the substring "Tax %" in the text and returns the data. Otherwise, it returns the data without any exception checking.
+## Functions
 
-## Instructions
+### `extract_and_process(zip_file_path)`
 
-Follow these instructions to use the code for PDF data extraction and processing:
+This function extracts and processes the contents of a ZIP file. It looks for a file named `structuredData.json` within the ZIP file, extracts it, and processes the data.
 
-1. **Import Dependencies**: Ensure that you have the necessary dependencies installed. The code relies on the following modules: `zipfile`, `json`, `os`, `tempfile`, `logging`, and `re`. Install any missing dependencies using your preferred package manager or `pip`.
+Parameters:
+- `zip_file_path` (str): The path of the ZIP file.
 
-2. **Extract and Process Data**:
-   - Call the `extract_and_process(zip_file_path)` function, passing in the path to the ZIP file containing the `structuredData.json` file.
-   - The function will extract the JSON file from the ZIP, process the data, and return the extracted information as a list.
+Returns:
+- `data` (list): The extracted and processed data.
 
-```python
-data = extract_and_process(zip_file_path)
-```
+### `extract_elements_from_json(json_file_path)`
 
-3. **Process Extracted Data**:
-   - The extracted data will be returned as a list of strings.
-   - You can further process or manipulate the extracted data as per your requirements.
-   - The provided code includes an example of checking for the presence of the substring "Tax %" in the extracted text.
-   - Adjust the code based on your specific processing needs.
+This function extracts elements from a JSON file.
 
-```python
-for element in data:
-    if "Tax %" in element:
-        # Perform specific operations or handle the presence of "Tax %" in the text
-        # Additional processing instructions go here
-```
+Parameters:
+- `json_file_path` (str): The path of the JSON file.
 
-Remember to modify the code as needed to fit your project's structure and requirements. Ensure that you handle exceptions, logging, and error handling appropriately for your specific implementation.
+Returns:
+- `elements` (list): The extracted elements.
 
-## Logging
-The code includes basic logging functionality to capture and handle exceptions. You can customize the logging configuration and behavior according to your project's requirements.
+### `get_data(json_file_path, exception)`
 
-## Additional Considerations
-- Make sure you have the necessary file permissions to read and extract files from the provided ZIP file.
-- Handle any potential encoding issues or text manipulation requirements based on the specific PDF content and data structure.
+This function extracts data from a JSON file. It processes the JSON file and extracts the text elements.
 
-## Conclusion
+Parameters:
+- `json_file_path` (str): The path of the JSON file.
+- `exception` (int): The exception flag indicating whether to check for the presence of the "Tax %" substring.
 
-With the provided code and instructions, you can extract data from a `structuredData.json` file within a ZIP file and process the extracted information according to your project's needs. Modify and extend the code as required to suit your specific use case.
+Returns:
+- `data` (list): The extracted data.
 
-If you encounter any issues or have further questions, feel free to refer to the code comments or seek assistance from the appropriate channels or resources.
+---
+
+This module provides convenient functions for extracting and processing the contents of a ZIP file and performing operations on JSON files. Use the provided functions in your project to extract elements from JSON files, extract data from JSON files, and handle exceptions if required.
+
+Please refer to the project documentation for detailed usage instructions and examples.
+
+Feel free to reach out if you have any questions or need further assistance.

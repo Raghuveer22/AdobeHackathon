@@ -1,99 +1,90 @@
-Documentation for the provided code:
+# PDF Processing Workflow
 
-Title: Invoice Extraction and writing to a csv file
+This script implements a PDF processing workflow that extracts data from PDF files and generates JSON files as output. The workflow involves extracting data from PDF files, processing the extracted data, and handling failed files by retrying with auto-tagged PDFs.
 
-Introduction:
-The code provided is a Python script that extracts data from a JSON file containing invoice information. It performs various data extraction and manipulation tasks to convert the extracted data into a structured format and then writes it to a CSV file. The script utilizes regular expressions and string manipulation techniques to extract specific information from the JSON data.
+## Table of Contents
+- [Dependencies](#dependencies)
+- [Functions](#functions)
+  - [process_pdf(source_file_path, execution_context)](#process_pdf)
+  - [process_files(source_folder, execution_context)](#process_files)
+  - [update_master_data_with_failed_files(master_data, source_folder, failed_files, execution_context)](#update_master_data_with_failed_files)
+  - [write_master_data_to_json(master_data, file_path)](#write_master_data_to_json)
+  - [write_failed_files(failed_files, file_path)](#write_failed_files)
+  - [save_json(file, source_folder, save_folder, execution_context)](#save_json)
+- [Main Workflow](#main-workflow)
 
-Functions and Usage:
+## Dependencies
 
-1. `regex_match(pattern, string, group=0)`:
-   - Description: This function performs a regular expression matching operation on a given string using the provided pattern.
-   - Parameters:
-     - `pattern`: The regular expression pattern to match.
-     - `string`: The input string to match against the pattern.
-     - `group` (optional): The capturing group index to return. Defaults to 0, which returns the entire match.
-   - Returns: The matched substring or an empty string if no match is found.
+This script relies on the following dependencies:
+- `os`
+- `json`
+- `logging`
+- `zipfile`
+- `logging_utils`
+- `pdf_operations`
+- `zip_data_processing`
 
-2. `remove_words(words, string)`:
-   - Description: This function removes specified words from a given string, cleans up extra spaces, and removes values in the format of a dollar like example "$","$234"
-   - Parameters:
-     - `words`: A list of words to remove from the string.
-     - `string`: The input string to process.
-   - Returns: The processed string with the specified words removed, extra spaces cleaned, and dollar values removed.
+Make sure to install the required dependencies to run this script.
 
-3. `remove_numbers_greater_than_100(text)`:
-   - Description: This function removes numbers greater than 100 from the input text, specifically targeting values in the format of a percentage (e.g., "Tax%").
-   - Parameters:
-     - `text`: The input text to process.
-   - Returns: The processed text with numbers greater than 100 removed.
+## Functions
 
-4. `write_data_to_csv(filename, data)`:
-   - Description: This function writes the provided data to a CSV file.
-   - Parameters:
-     - `filename`: The name of the CSV file to create or overwrite.
-     - `data`: A list of dictionaries, where each dictionary represents a row of data to be written to the CSV file.
-   - Returns: None
+### `process_pdf(source_file_path, execution_context)`
 
-5. `extract_business_details(value_list)`:
-   - Description: This function extracts business details from the given value list.
-   - Parameters:
-     - `value_list`: A list of values extracted from the JSON data.
-   - Returns: A tuple containing the extracted business details, including city, country, description, name, street address, and ZIP code.
+This function extracts the contents of a PDF file and processes them.
 
-6. `extract_invoice_details(value_list, next_index)`:
-   - Description: This function extracts invoice details from the given value list.
-   - Parameters:
-     - `value_list`: A list of values extracted from the JSON data.
-     - `next_index`: The index of the next occurrence of the business name in the value list.
-   - Returns: A tuple containing the extracted issue date and invoice number.
+Parameters:
+- `source_file_path` (str): The path of the source PDF file.
+- `execution_context` (ExecutionContext): The execution context for API operations.
 
-7. `extract_and_remove_pattern(pattern, string)`:
-   - Description: This function extracts a substring matching the given pattern from the string and removes it from the string.
-   - Parameters:
-     - `pattern`: The regular expression pattern to match.
-     - `string`: The input string to process.
-   - Returns: A tuple containing the extracted word and the processed string with the word removed.
+Returns:
+- `data` (dict or None): The processed data as a dictionary, or None if an exception occurs.
 
-8. `extract_customer_details(value_list, next_index, item_index)`:
-   - Description: This function extracts customer details from the given value list.
-   - Parameters:
-     - `value_list`: A list of values extracted from the JSON data.
-     - `next_index`: The index of the next occurrence of the business name in the value list.
-     - `item_index`: The index of the "ITEM" keyword in the value list.
-   -
+### `process_files(source_folder, execution_context)`
 
- Returns: A tuple containing the extracted customer address line 1, address line 2, email, name, phone number, invoice description, and due date.
+This function processes all the PDF files in a given folder.
 
-9. `extract_invoice_items(value_list, item_index)`:
-   - Description: This function extracts invoice items from the given value list.
-   - Parameters:
-     - `value_list`: A list of values extracted from the JSON data.
-     - `item_index`: The index of the "ITEM" keyword in the value list.
-   - Returns: A list of dictionaries representing the extracted invoice items, including the item name, quantity, and rate.
+Parameters:
+- `source_folder` (str): The path of the source folder containing the PDF files.
+- `execution_context` (ExecutionContext): The execution context for API operations.
 
-10. `extract_invoice_tax(value_list, item_index)`:
-    - Description: This function extracts invoice tax information from the given value list.
-    - Parameters:
-      - `value_list`: A list of values extracted from the JSON data.
-      - `item_index`: The index of the "ITEM" keyword in the value list.
-    - Returns: The extracted invoice tax information.
+Returns:
+- `master_data` (dict): The dictionary containing the processed data for each PDF file.
+- `failed_files` (list): The list of files that failed to process.
 
-11. `extract_data_from_json(filename)`:
-    - Description: This function extracts data from a JSON file, performs various extraction operations using the previously defined functions, and returns the extracted data as a list of dictionaries.
-    - Parameters:
-      - `filename`: The name of the JSON file to read.
-    - Returns: A list of dictionaries representing the extracted data.
+### `update_master_data_with_failed_files(master_data, source_folder, failed_files, execution_context)`
 
-12. `main()`:
-    - Description: The main entry point of the script. It specifies the JSON filename, extracts the data using `extract_data_from_json()`, and writes the extracted data to a CSV file using `write_data_to_csv()`.
+This function retries processing the failed files using auto-tagged PDFs and updates the master data.
 
-Usage:
-To use the code:
-1. Ensure that the required Python libraries (re, json, csv) are installed.
-2. Place the code in a Python script file (e.g., `invoice_extraction.py`).
-3. Provide the path to the JSON file containing the invoice data by modifying the `json_filename` variable in the `main()` function.
-4. Run the script, which will extract the data from the JSON file, perform the necessary operations, and generate a CSV file named `output.csv` containing the structured data.
+Parameters:
+- `master_data` (dict): The dictionary containing the master data.
+- `source_folder` (str): The path of the source folder containing the failed files.
+- `failed_files` (list): The list of files that failed to process.
+- `execution_context` (ExecutionContext): The execution context for API operations.
 
-Note:
-Please ensure that the input JSON file follows the expected structure and contains the necessary information for the extraction functions to work correctly.
+Returns:
+- `master_data` (dict): The updated master data dictionary.
+
+### `write_master_data_to_json(master_data, file_path)`
+
+This function writes the master data dictionary to a JSON file.
+
+Parameters:
+- `master_data` (dict): The master data dictionary.
+- `file_path` (str): The path of the JSON file to write.
+
+### `write_failed_files(failed_files, file_path)`
+
+This function writes the list of failed files to a text file.
+
+Parameters:
+- `failed_files` (list): The list of failed file names.
+- `file_path` (str): The path of the text file to write.
+
+### `save_json(file, source_folder, save_folder, execution_context)`
+
+This function saves a JSON file generated from an auto-tagged PDF.
+
+Parameters:
+- `file` (str): The name of the PDF file.
+- `source_folder` (str): The path of the source folder containing the PDF file.
+- `save_folder` (str): The path of the folder to save the JSON file.

@@ -18,7 +18,6 @@ project/
 │   ├── data_processing.md
 │   ├── file_extraction.md
 │   ├── zip_data_processing.md
-│   ├── data_description.md
 │   ├── pdf_operations.md
 │   └── exception.md
 ├── Master/
@@ -82,23 +81,12 @@ Note: Make sure to set up the necessary credentials and configurations for the A
 
 The project relies on the following dependencies:
 
-- Python 3.x
-- `adobe-pdfservices-sdk`
-- `logging`
-- `json`
-- `tempfile`
-- `csv`
-- `re`
-- `os`
-- `zipfile`
+- `python 3.x`,`adobe-pdfservices-sdk`,`logging` ,`json`,`tempfile`,`csv`,`re`,`zipfile`
 
 Make sure to install the dependencies using the appropriate package manager or `pip`.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-Thanks for visiting!
+<p>
+<img src="https://user-images.githubusercontent.com/74038190/216122041-518ac897-8d92-4c6b-9b3f-ca01dcaf38ee.png" alt="Thank You" height="50">
+<span>Thanks for visiting!</span></p>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212741999-016fddbd-617a-4448-8042-0ecf907aea25.gif" alt="Thank You" height="500">

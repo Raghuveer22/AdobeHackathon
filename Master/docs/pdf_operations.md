@@ -16,24 +16,8 @@ This module relies on the following dependencies:
 - `os`
 - `logging`
 - `tempfile`
-- `os.path`
-- `pathlib`
-- `adobe.pdfservices.operation.auth.credentials.Credentials`
-- `adobe.pdfservices.operation.client_config.ClientConfig`
-- `adobe.pdfservices.operation.pdfops.options.extractpdf.extract_pdf_options.ExtractPDFOptions`
-- `adobe.pdfservices.operation.pdfops.options.extractpdf.extract_element_type.ExtractElementType`
-- `adobe.pdfservices.operation.execution_context.ExecutionContext`
-- `adobe.pdfservices.operation.pdfops.extract_pdf_operation.ExtractPDFOperation`
-- `adobe.pdfservices.operation.auth.credentials.Credentials`
-- `adobe.pdfservices.operation.exception.exceptions.ServiceApiException`
-- `adobe.pdfservices.operation.exception.exceptions.ServiceUsageException`
-- `adobe.pdfservices.operation.exception.exceptions.SdkException`
-- `adobe.pdfservices.operation.execution_context.ExecutionContext`
-- `adobe.pdfservices.operation.io.file_ref.FileRef`
-- `adobe.pdfservices.operation.pdfops.options.autotagpdf.autotag_pdf_options.AutotagPDFOptions`
-- `adobe.pdfservices.operation.internal.api.dto.request.autotagpdf.autotag_pdf_output.AutotagPDFOutput`
-- `adobe.pdfservices.operation.pdfops.autotag_pdf_operation.AutotagPDFOperation`
-- `adobe.pdfservices.operation.pdfops.options.extractpdf.table_structure_type.TableStructureType`
+- `os`
+- `adobe-pdfserivices-sdk`
 
 Make sure to install the required dependencies to use this module.
 

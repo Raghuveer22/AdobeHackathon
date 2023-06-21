@@ -13,8 +13,6 @@ Before setting up API credentials, make sure you have completed the following st
    - Access the Adobe Developer Console and navigate to your project.
    - Find the "API Integration" section and select "Credentials".
    - Choose the "JWT" authentication type to generate the API credentials.
-   - Provide a unique name for the credentials.
-   - Click on the "Generate Key Pair" button to generate the public/private key pair.
    - Save the private key file (`private.key`) securely. This file is required for authenticating API requests.
 
 2. **Create API Credentials JSON File**
@@ -55,28 +53,4 @@ Before setting up API credentials, make sure you have completed the following st
 
       - Replace `region`,`connectTimeout`,`readTimeout` with your actual requirements.
 
-5. **Use the API Credentials in Your Project**
-   - In your code, import the necessary modules and libraries to use the API credentials.
-   - Use the provided functions and methods to load and authenticate with the API credentials.
-
-   ```python
-   import os
-   from adobe.pdfservices.operation.auth.credentials import Credentials
-
-   # Constants
-   BASEPATH = os.path.dirname(os.path.abspath(__file__))
-   PDFSERVICEAPICREDENTIALFILEPATH = os.path.join(BASEPATH, 'pdfservices-api-credentials.json')
-
-   # Load and authenticate with the API credentials
-   credentials = Credentials.service_account_credentials_builder() \
-       .from_file(PDFSERVICEAPICREDENTIALFILEPATH) \
-       .build()
-   ```
-
-   - Adjust the file paths and imports based on your project structure and requirements.
-
-Congratulations! You have successfully set up your API credentials for the Adobe PDF Services API. You can now integrate and interact with the API using the provided credentials.
-
-Remember to keep your API credentials secure and avoid sharing them publicly.
-
-If you encounter any issues or have further questions, please refer to the official Adobe PDF Services API documentation or seek support from the Adobe Developer Console
+### Now run the code as described in README.md

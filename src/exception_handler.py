@@ -4,16 +4,15 @@ from logging_utils import setup_logging
 from file_extraction import write_master_data_to_json
 
 BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-FOLDER = os.path.join(BASEPATH,"output","failed")  # Folder containing failed files
+FAILEDFILESFOLDER = os.path.join(BASEPATH,"output","failed")  # Folder containing failed files
 exception_json_path =os.path.join(BASEPATH,"ouptut","exception.json") # Path to the JSON file for storing exception data
 
 def main():
     setup_logging()
 
     master_data = {}  # Dictionary to store exception data
-
-    for source_file in os.listdir(FOLDER):
-        source_file_path = os.path.join(FOLDER, source_file)
+    for source_file in os.listdir(FAILEDFILESFOLDER):
+        source_file_path = os.path.join(FAILEDFILESFOLDER, source_file)
         data = get_data(source_file_path, exception=1)  # Get exception data for the file
         master_data[source_file] = data  # Store the exception data in the dictionary
 

@@ -13,7 +13,7 @@ This script is responsible for extracting failed files and performing retries fo
 
    - `BASEPATH`: The base directory path of your project.
    - `json_file`: The path to the JSON file storing master data.
-   - `failed_file`: The path to the text file storing failed file names.
+   - `failed_files_path`: The path to the text file storing failed file names.
    - `MAX_RETRY_LIMIT`: The maximum number of retry attempts for failed files.
 
 3. Run the script using a Python interpreter.
@@ -41,7 +41,7 @@ This script handles the extraction of exception data for files that failed durin
 2. Update the file paths and constants as needed:
 
    - `BASEPATH`: The base directory path of your project.
-   - `FOLDER`: The folder containing failed files.
+   - `FAILEDFILESFOLDER`: The folder containing failed files.
    - `exception_json_path`: The path to the JSON file for storing exception data.
 
 3. Run the script using a Python interpreter.

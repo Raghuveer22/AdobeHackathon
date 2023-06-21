@@ -13,9 +13,9 @@ from file_extraction import (
 # constants used in the code
 BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 json_file = os.path.join(BASEPATH,"output","invoice.json")# Path to the JSON file storing master data
-failed_file = os.path.join(BASEPATH,"output","failed_files.txt") # Path to the text file storing failed file names
+failed_files_path = os.path.join(BASEPATH,"output","failed_files.txt") # Path to the text file storing failed file names
 MAX_RETRY_LIMIT = 3  # Maximum number of retry attempts for failed files
-
+fail_folder = os.path.join(BASEPATH,'output','failed')
 
 def main():
     setup_logging()
@@ -28,7 +28,7 @@ def main():
 
     # Load failed file names from text file
     failed_files = []
-    with open(fails_file, 'r') as file:
+    with open(failed_files_path, 'r') as file:
         for line in file:
             source_file_path = line.strip()
             failed_files.append(source_file_path)
@@ -40,7 +40,7 @@ def main():
         failed_files = [file for file in failed_files if file not in master_data]
         retry_count += 1
 
-    fail_folder = os.path.join(BASEPATH, 'Failed')
+  
     if failed_files:
         logging.error("Failed to process some files after reaching the maximum retry limit")
         for failed_file in failed_files:
@@ -48,9 +48,10 @@ def main():
             if val == 200:
                 failed_files.remove(failed_file)
     if failed_files:
-        write_failed_files(failed_files, failed_file)
+        write_failed_files(failed_files, failed_files_path)
     logging.info("Processing completed successfully.")
 
 
 if __name__ == "__main__":
     main()
+

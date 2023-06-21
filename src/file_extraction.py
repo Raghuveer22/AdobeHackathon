@@ -133,11 +133,13 @@ def save_json(file, source_folder, save_folder, execution_context):
             zip_file.extractall(path=save_folder)
         try:
             new_file_path = os.path.join(save_folder, new_file_name)
-            os.rename(extracted_file_path, new_file_path)
+            if os.path.exists(new_file_path):
+                os.remove(new_file_path)  # Remove the existing file at new_file_path
+            os.rename(extracted_file_path, new_file_path)  # Rename the extracted file to the desired name
             return 200  
-        except :
-            logging.log(f"e")# Rename the extracted file to the desired name
-         # Indicate successful file processing
+        except Exception as e:
+            logging.error(f"An error occurred: {str(e)}")
+            return 500  # Indicate an error occurred during file processing
     else:
         return 404  # Indicate file not found
 
@@ -153,8 +155,7 @@ def main():
     """
     setup_logging()
     execution_context = create_execution_context()
-    source_folder = os.path.join(BASEPATH, 'Master', 'InvoicesData', 'TestDataSet')
-
+    source_folder = os.path.join(BASEPATH, 'InvoicesData', 'TestDataSet')
     master_data, failed_files = process_files(source_folder, execution_context)
     write_master_data_to_json(master_data, json_file)
     retry_count = 0

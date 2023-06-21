@@ -20,9 +20,9 @@ project/
 │   ├── zip_data_processing.md
 │   ├── pdf_operations.md
 │   └── exception.md
-├── Master/
-│   └── InvoicesData/
+├── InvoicesData/
 │       └── TestDataSet/
+│                └── Pdfs
 ├── src/
 │   ├── logging_utils.py
 │   ├── pdf_operations.py
@@ -34,9 +34,9 @@ project/
 │   └── client_config.json
 ├── Failed/
 │   └── output81.json (File generated after executing fail_file_extraction.py)
-├── pdfservices-api-credentials.json
-├── LogFile.log
-├── private.key
+├── pdfservices-api-credentials.json(You have to setup according intro.md)
+├── private.key(You have to setup according intro.md)
+├── LogFile.log (File generated after )
 ├── failed_files.txt (File generated after executing file_extraction.py)
 ├── invoice.json (File generated after executing file_extraction.py)
 ├── exception.json (File generated after executing exception_handler.py)
@@ -84,9 +84,10 @@ The project relies on the following dependencies:
 - `python 3.x`,`adobe-pdfservices-sdk`,`logging` ,`json`,`tempfile`,`csv`,`re`,`zipfile`
 
 Make sure to install the dependencies using the appropriate package manager or `pip`.
-<p>
-<img src="https://user-images.githubusercontent.com/74038190/216122041-518ac897-8d92-4c6b-9b3f-ca01dcaf38ee.png" alt="Thank You" height="50">
-<span>Thanks for visiting!</span></p>
+<div style="display: flex; align-items: center;">
+  <img src="https://user-images.githubusercontent.com/74038190/216122041-518ac897-8d92-4c6b-9b3f-ca01dcaf38ee.png" alt="Thank You" height="40">
+  <span>Thanks for visiting!</span>
+</div>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212741999-016fddbd-617a-4448-8042-0ecf907aea25.gif" alt="Thank You" height="500">

@@ -18,7 +18,7 @@ BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 def main():
     setup_logging()
-    source_folder = os.path.join(BASEPATH, 'Master', 'InvoicesData', 'TestDataSet')
+    source_folder = os.path.join(BASEPATH, 'InvoicesData', 'TestDataSet')
     execution_context = create_execution_context()
 
     # Load master data from JSON file
@@ -39,7 +39,7 @@ def main():
         failed_files = [file for file in failed_files if file not in master_data]
         retry_count += 1
 
-    fail_folder = os.path.join(BASEPATH, 'Master', "Failed")
+    fail_folder = os.path.join(BASEPATH, 'Failed')
     if failed_files:
         logging.error("Failed to process some files after reaching the maximum retry limit")
         for failed_file in failed_files:

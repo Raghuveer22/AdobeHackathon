@@ -1,8 +1,7 @@
 import re
 import json
 import csv
-
-
+## Detialed
 def regex_match(pattern, string, group=0):
     # Helper function to perform regular expression matching
     match = re.search(pattern, string)
@@ -13,7 +12,7 @@ def regex_match(pattern, string, group=0):
 
 
 def remove_words(words, string):
-    # Remove specified words from a string and clean up extra spaces
+    # Remove specified words from a string and clean up extra spaces and values with dollar
     for word in words:
         string = string.replace(word, "")
     string = re.sub('\$\d+(\.\d+)?', '', string)
@@ -21,16 +20,20 @@ def remove_words(words, string):
     string = string.replace('$', '')
     return string.strip()
 
+def extract_and_remove_pattern(pattern, string):
+   word= regex_match(pattern,string)
+   return  word,remove_words([word],string)
 
 def remove_numbers_greater_than_100(text):
-    # Remove numbers greater than 100 from the text
+    # Remove numbers greater than 100 from the text in Tax% we need only values 1-100
     words = text.split()
     result = []
     
     for word in words:
-        if not word.isdigit() or int(word) <= 100:
+        if word.isdigit() and int(word) <= 100:
             result.append(word)
-    
+    if not result:
+        return ""
     return ' '.join(result)
 
 
@@ -48,28 +51,24 @@ def extract_business_details(value_list):
     next_index = value_list[1:].index(bussiness_name)
     bussiness_description = value_list[next_index + 2]
     bussiness_address_list = value_list[1:next_index + 1]
-    bussiness_address_full = " ".join(bussiness_address_list)
-    bussiness_zip_code = regex_match(r'\b\d{5}\b', bussiness_address_full)
-    bussiness_address = bussiness_address_full.split(f"{bussiness_zip_code}")[0].strip()
+    temp = " ".join(bussiness_address_list)
+    bussiness_zip_code = regex_match(r'\b\d{5}\b', temp)
+    bussiness_address =temp.split(f"{bussiness_zip_code}")[0].strip()
     bussiness_address_list = bussiness_address.split(', ')
     bussiness_street_address = bussiness_address_list[0]
     bussiness_city = bussiness_address_list[1]
     bussiness_country_list = bussiness_address_list[2:]
     bussiness_country = ", ".join(bussiness_country_list)
+    invoice_details =temp.split(f"{bussiness_zip_code}")[1].strip()
+    issue_date=regex_match(r'\b(\d{2}-\d{2}-\d{4})\b', temp)
+    invoice_details = invoice_details.split(f"{issue_date}")[0].strip()
+    invoice_number = regex_match(r'(\w+)\sIssue date', invoice_details, group=1)
     
-    return bussiness_city, bussiness_country, bussiness_description, bussiness_name, bussiness_street_address, bussiness_zip_code
+    return bussiness_city, bussiness_country, bussiness_description, bussiness_name, bussiness_street_address, bussiness_zip_code,issue_date,invoice_number,next_index
 
 
-def extract_invoice_details(value_list, next_index):
-    # Extract invoice details from the value list
-    issue_date = regex_match(r'\b(\d{2}-\d{2}-\d{4})\b', value_list[next_index])
-    invoice_details = value_list[next_index].split(f"{issue_date}")[1].strip()
-    invoice_number = regex_match(r'(\w+)\sIssue date', invoice_details, 1)
-    
-    return issue_date, invoice_number
-def extract_and_remove_pattern(pattern, string):
-   word= regex_match(pattern,string)
-   return  word,remove_words([word],string)
+
+
 def extract_customer_details(value_list, next_index, item_index):
     # Extract customer details from the value list
     customer_address_list = value_list[next_index + 4:item_index]
@@ -108,6 +107,7 @@ def extract_customer_details(value_list, next_index, item_index):
 def extract_invoice_items(value_list, item_index):
     # Extract invoice items from the value list
     products = []
+    item_index+=4
     quantity_index = item_index + 1
     rate_index = item_index + 2
 
@@ -120,12 +120,12 @@ def extract_invoice_items(value_list, item_index):
         quantity_index = item_index + 1
         rate_index = item_index + 2
 
-    return products
+    return products,item_index
 
 
 def extract_invoice_tax(value_list, item_index):
     # Extract invoice tax from the value list
-    tax_text = " ".join(value_list[item_index + 1:])
+    tax_text = " ".join(value_list[item_index:])
     words_to_remove = ["Tax %", "Total", "Due"]
     tax_text = remove_words(words=words_to_remove, string=tax_text)
     tax_text = remove_numbers_greater_than_100(tax_text)
@@ -142,12 +142,10 @@ def extract_data_from_json(filename):
     
     for i in master_data.keys():
         value_list = master_data[i]
-        business_city, business_country, business_description, business_name, business_street_address, business_zip_code = extract_business_details(value_list)
-        next_index = value_list[1:].index(business_name)
-        issue_date, invoice_number = extract_invoice_details(value_list, next_index)
+        business_city, business_country, business_description, business_name, business_street_address, business_zip_code,issue_date,invoice_number,next_index = extract_business_details(value_list)
         item_index = value_list.index("ITEM")
         customer_address_line1, customer_address_line2, customer_email, customer_name, phone_number, invoice_description, due_date = extract_customer_details(value_list, next_index, item_index)
-        products = extract_invoice_items(value_list, item_index)
+        products,item_index = extract_invoice_items(value_list, item_index)
         tax_text = extract_invoice_tax(value_list, item_index)
         
         for product in products:
@@ -178,9 +176,11 @@ def extract_data_from_json(filename):
 
 def main():
     json_filename = 'invoice.json'
+    exception_filename="exception.json"
     data = extract_data_from_json(json_filename)
+    exception_data=extract_data_from_json(exception_filename)
+    data=data+exception_data
     write_data_to_csv('output.csv', data)
-
-
+    
 if __name__ == "__main__":
     main()

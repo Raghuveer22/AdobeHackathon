@@ -2,5 +2,4 @@ private.key
 pdfservices-api-credentials.json
 logfile.log 
 ProblemStatement.pdf
-InvoicesData/
 __pycache__

@@ -1,7 +1,7 @@
 import logging
 import os
 
-LOGFILEPATH = 'LogFile.log'  # Specify the path to the log file
+LOGFILEPATH = os.path.join('output','LogFile.log')  # Specify the path to the log file
 
 def setup_logging():
     """Set up logging configuration."""

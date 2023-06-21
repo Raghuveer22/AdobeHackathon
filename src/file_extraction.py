@@ -145,8 +145,8 @@ def save_json(file, source_folder, save_folder, execution_context):
 
 
 MAX_RETRY_LIMIT = 3
-json_file = "invoice.json"
-failed_file = "failed_files.txt"
+json_file = os.path.join("output","invoice.json")
+failed_file = os.path.join("output","failed_files.txt")
 
 
 def main():

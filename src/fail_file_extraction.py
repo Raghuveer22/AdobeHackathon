@@ -10,10 +10,11 @@ from file_extraction import (
     save_json
 )
 
-json_file = "invoice.json"  # Path to the JSON file storing master data
-fails_file = "failed_files.txt"  # Path to the text file storing failed file names
-MAX_RETRY_LIMIT = 0  # Maximum number of retry attempts for failed files
+# constants used in the code
 BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+json_file = os.path.join(BASEPATH,"output","invoice.json")# Path to the JSON file storing master data
+failed_file = os.path.join(BASEPATH,"output","failed_files.txt") # Path to the text file storing failed file names
+MAX_RETRY_LIMIT = 3  # Maximum number of retry attempts for failed files
 
 
 def main():
@@ -46,10 +47,8 @@ def main():
             val = save_json(failed_file, source_folder=source_folder, save_folder=fail_folder, execution_context=execution_context)
             if val == 200:
                 failed_files.remove(failed_file)
-
     if failed_files:
-        write_failed_files(failed_files, fails_file)
-
+        write_failed_files(failed_files, failed_file)
     logging.info("Processing completed successfully.")
 
 

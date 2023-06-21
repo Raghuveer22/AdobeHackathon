@@ -44,7 +44,7 @@ project/
 ├── private.key(You have to setup according setup.md)
 └── README.md
 ```
-
+![Alt Text](./file_structure.png)
 ## Instructions
 1. Setup the project according to [setup.md](docs/setup.md)
 2. If you have any doubts in the source code [docs](docs/)
@@ -74,5 +74,5 @@ Make sure to install the dependencies using the appropriate package manager or `
 </div>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/212741999-016fddbd-617a-4448-8042-0ecf907aea25.gif" alt="Thank You" height="500">
+  <img src="https://user-images.githubusercontent.com/74038190/212741999-016fddbd-617a-4448-8042-0ecf907aea25.gif" alt="Thank You" height="300">
 </p>

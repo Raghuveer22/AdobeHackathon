@@ -1,8 +1,7 @@
 import re
 import json
 import csv
-
-
+import os
 def regex_match(pattern, string, group=0):
     """
     Helper function to perform regular expression matching.
@@ -281,14 +280,15 @@ def extract_data_from_json(filename):
             })
 
     return data
-
+# file names and constants used in this file
+BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+json_filename = os.path.join(BASEPATH,"output","invoice.json")
+exception_filename = os.path.join(BASEPATH,"output","exception.json")
 
 def main():
     """
     The main function of the program.
     """
-    json_filename = 'invoice.json'
-    exception_filename = "exception.json"
     data = extract_data_from_json(json_filename)
     exception_data = extract_data_from_json(exception_filename)
     data = data + exception_data

@@ -7,7 +7,6 @@ from pdf_operations import create_execution_context, extract_pdf, get_auto_tag_p
 from zip_data_processing import extract_and_process
 
 # Set the base path of the project
-BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def process_pdf(source_file_path, execution_context):
@@ -143,11 +142,12 @@ def save_json(file, source_folder, save_folder, execution_context):
     else:
         return 404  # Indicate file not found
 
-
+# constants and file paths used int the code
 MAX_RETRY_LIMIT = 3
-json_file = os.path.join("output","invoice.json")
-failed_file = os.path.join("output","failed_files.txt")
-
+BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+failed_file = os.path.join(BASEPATH,"output","failed_files.txt")
+json_file = os.path.join(BASEPATH,"output","invoice.json")
+source_folder = os.path.join(BASEPATH, 'InvoicesData', 'TestDataSet')
 
 def main():
     """
@@ -155,7 +155,6 @@ def main():
     """
     setup_logging()
     execution_context = create_execution_context()
-    source_folder = os.path.join(BASEPATH, 'InvoicesData', 'TestDataSet')
     master_data, failed_files = process_files(source_folder, execution_context)
     write_master_data_to_json(master_data, json_file)
     retry_count = 0

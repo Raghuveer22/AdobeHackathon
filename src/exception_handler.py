@@ -4,8 +4,8 @@ from logging_utils import setup_logging
 from file_extraction import write_master_data_to_json
 
 BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-exception_json_path = "exception.json"  # Path to the JSON file for storing exception data
-FOLDER = os.path.join(BASEPATH, "Failed")  # Folder containing failed files
+FOLDER = os.path.join(BASEPATH,"output","failed")  # Folder containing failed files
+exception_json_path =os.path.join(BASEPATH,"ouptut","exception.json") # Path to the JSON file for storing exception data
 
 def main():
     setup_logging()

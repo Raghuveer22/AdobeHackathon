@@ -144,7 +144,7 @@ def save_json(file, source_folder, save_folder, execution_context):
 
 # constants and file paths used int the code
 MAX_RETRY_LIMIT = 3
-BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASEPATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 failed_file = os.path.join(BASEPATH,"output","failed_files.txt")
 json_file = os.path.join(BASEPATH,"output","invoice.json")
 source_folder = os.path.join(BASEPATH, 'InvoicesData', 'TestDataSet')

@@ -24,7 +24,7 @@ Make sure to install the required dependencies to use this module.
 ## Constants
 
 - `BASEPATH`: The base path of the project directory. It is determined dynamically based on the location of the current script file.
-- `CLIENTCONFIGFILE`: The path to the client configuration file (`client_config.json`) located in the `Master/src` directory.
+- `CLIENTCONFIGFILE`: The path to the client configuration file (`client_config.json`) located in the `src` directory.
 - `PDFSERVICEAPICREDENTIALFILEPATH`: The path to the PDF Services API credentials file (`pdfservices-api-credentials.json`) located in the project directory.
 
 ## Functions
@@ -64,7 +64,6 @@ This module provides convenient functions to
 
  interact with the Adobe PDF Services API and perform PDF operations. Use the provided functions in your project to extract text from PDF files and perform autotagging on PDF files.
 
-Please refer to the project documentation for detailed usage instructions and examples.
+Please refer to the project documentation for detailed usage instructions.
 
-Feel free to reach out if you have any questions or need further assistance.
-
+[Please let me know if you need any further assistance or have any questions!](https://github.com/Raghuveer22/AdobeHackathon/issues)

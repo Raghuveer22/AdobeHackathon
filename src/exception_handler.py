@@ -10,13 +10,13 @@ exception_json_path =os.path.join(BASEPATH,"ouptut","exception.json") # Path to 
 def main():
     setup_logging()
 
-    master_data = {}  # Dictionary to store exception data
+    missed_data = {}  # Dictionary to store exception data
     for source_file in os.listdir(FAILEDFILESFOLDER):
         source_file_path = os.path.join(FAILEDFILESFOLDER, source_file)
         data = get_data(source_file_path, exception=1)  # Get exception data for the file
-        master_data[source_file] = data  # Store the exception data in the dictionary
+        missed_data[source_file] = data  # Store the exception data in the dictionary
 
-    write_master_data_to_json(master_data=master_data, file_path=exception_json_path)  # Write exception data to JSON file
+    write_master_data_to_json(master_data=missed_data, file_path=exception_json_path)  # Write exception data to JSON file
 
 
 if __name__ == "__main__":

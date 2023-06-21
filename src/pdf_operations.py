@@ -15,7 +15,8 @@ from adobe.pdfservices.operation.internal.api.dto.request.autotagpdf.autotag_pdf
 from adobe.pdfservices.operation.pdfops.autotag_pdf_operation import AutotagPDFOperation
 
 # Constant Literals
-BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASEPATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 CLIENTCONFIGFILE = os.path.join(BASEPATH, 'Master', 'src', 'client_config.json')
 PDFSERVICEAPICREDENTIALFILEPATH = os.path.join(BASEPATH, 'pdfservices-api-credentials.json')
 

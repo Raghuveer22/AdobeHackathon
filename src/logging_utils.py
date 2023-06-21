@@ -1,9 +1,11 @@
 import logging
 import os
-BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASEPATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 LOGFILEPATH = os.path.join(BASEPATH,'output','LogFile.log')  # Specify the path to the log file
 
 def setup_logging():
+    print(BASEPATH)
     """Set up logging configuration."""
     logging.basicConfig(
         level=os.environ.get("LOGLEVEL", "INFO"),  # Set the log level to the value of the LOGLEVEL environment variable or INFO if not set

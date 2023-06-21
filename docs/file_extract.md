@@ -20,9 +20,9 @@ This script relies on the following dependencies:
 - `json`
 - `logging`
 - `zipfile`
-- `logging_utils`
-- `pdf_operations`
-- `zip_data_processing`
+- [`logging_utils`](../src/logging_utils.py)
+- [`pdf_operations`](../src/pdf_operations.py)
+- [`zip_data_processing`](../src/zip_data_processing.py)
 
 Make sure to install the required dependencies to run this script.
 
@@ -82,7 +82,7 @@ Parameters:
 
 ### `save_json(file, source_folder, save_folder, execution_context)`
 
-This function saves a JSON file generated from an auto-tagged PDF.
+This function saves a JSON file generated from an auto-tagged PDF and replace the current file with file name.
 
 Parameters:
 - `file` (str): The name of the PDF file.
@@ -107,9 +107,10 @@ The script provides a main function that executes the PDF processing workflow. T
 7. Writes the updated master data dictionary to the JSON file.
 8. Handles cases where some files failed to process after reaching the maximum retry limit, and writes the list of failed files to a text file.
 9. Logs the completion of the processing.
+10. Next Proceed to fail_file_extraction if there are any failed files
 
 To use this script, ensure that the required dependencies are installed and set the appropriate values for the `BASEPATH` and other variables according to your project's structure and requirements. Run the script to start the PDF processing workflow.
 
 Refer to the project documentation for detailed usage instructions and examples.
 
-Please let me know if you need any further assistance or have any questions!
+[Please let me know if you need any further assistance or have any questions!](https://github.com/Raghuveer22/AdobeHackathon/issues)

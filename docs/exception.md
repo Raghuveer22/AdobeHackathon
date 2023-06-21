@@ -27,7 +27,7 @@ This script is responsible for extracting failed files and performing retries fo
 5. Executes a loop to retry failed files until the maximum retry limit is reached or all files are processed successfully.
 6. Updates the master data with the failed files and writes it back to the JSON file.
 7. Removes the processed files from the failed files list.
-8. If there are still failed files remaining, attempts to process them again and moves them to a "Failed" folder.
+8. If there are still failed files remaining, attempts to process them again and extracts json data of them to a ["Failed"](../output/failed/) folder.
 9. Writes the list of failed files to a text file.
 10. Logs the completion of the processing.
 
@@ -55,5 +55,3 @@ This script handles the extraction of exception data for files that failed durin
 5. Stores the exception data in the dictionary using the file name as the key.
 6. Writes the exception data to a JSON file using the `write_master_data_to_json` function.
 7. Logs the completion of the exception handling.
-
-Please note that the functionality of the scripts may depend on other modules or functions not provided in the code snippets you have shared. Ensure that all necessary dependencies and libraries are installed and referenced properly in your project.

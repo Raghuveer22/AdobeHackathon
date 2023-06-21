@@ -281,7 +281,7 @@ def extract_data_from_json(filename):
 
     return data
 # file names and constants used in this file
-BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASEPATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 json_filename = os.path.join(BASEPATH,"output","invoice.json")
 exception_filename = os.path.join(BASEPATH,"output","exception.json")
 

@@ -11,7 +11,7 @@ from file_extraction import (
 )
 
 # constants used in the code
-BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASEPATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 json_file = os.path.join(BASEPATH,"output","invoice.json")# Path to the JSON file storing master data
 failed_files_path = os.path.join(BASEPATH,"output","failed_files.txt") # Path to the text file storing failed file names
 MAX_RETRY_LIMIT = 3  # Maximum number of retry attempts for failed files

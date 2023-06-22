@@ -57,7 +57,7 @@ project/
 5. If there is any problem from the user-end like finishing of API quota or network issues, the files will be written into `failed_files.txt`, and you can run `fail_file_extraction.py` directly to process the remaining files after solving the user-end problems.
 6. If the maximum retry limit is reached and there are still failed files, the script will save the list of failed files in `failed_files.txt` and save the json data in the [failed folder](output/failed/).
 7. Run `exception_handler.py` to process the failed files in the failed folder separately and generate the data in `exception.json`.
-8. Now run the `data_processing.py` by specifying the paths to the `invoice.json` and   `exception.json` the output will be displayed into `output.csv` in the [output folder](output/)
+8. Now run the `data_processing.py` by specifying the paths to the `invoice.json` and   `exception.json` the output will be displayed into [`output.csv`]('output.csv')
 
 Note: Make sure to set up the necessary credentials and configurations for the Adobe PDF Services API as described in the project documentation.
 

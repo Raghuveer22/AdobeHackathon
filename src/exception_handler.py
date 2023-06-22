@@ -19,5 +19,5 @@ def main():
     write_master_data_to_json(master_data=missed_data, file_path=exception_json_path)  # Write exception data to JSON file
 
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()

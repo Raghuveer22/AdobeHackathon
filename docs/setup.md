@@ -54,6 +54,7 @@ To obtain the credentials for Adobe PDF Services API and set up your project, fo
    - Replace `region`, `connectTimeout`, and `readTimeout` with your desired values.
 
 
-
+*make sure to make output folder in the root if not exists and failed folder in the output folder for the code to work*
 By following these steps, you should have obtained the credentials, set up your project, and updated the client configuration.
+
 ### Now run the code as described in [`README.md`](../README.md)

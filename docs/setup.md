@@ -26,7 +26,7 @@ To obtain the credentials for Adobe PDF Services API and set up your project, fo
      "service_account_credentials": {
        "organization_id": "<YOUR_ORGANIZATION_ID>",
        "account_id": "<YOUR_ACCOUNT_ID>",
-       "private_key_file": "<PATH_TO_PRIVATE_KEY_FILE>"
+       "private_key_file": "private.key"
      }
    }
    ```

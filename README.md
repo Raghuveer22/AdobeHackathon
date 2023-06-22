@@ -44,7 +44,7 @@ project/
 ├── private.key(You have to setup according setup.md)
 └── README.md
 ```
-![Alt Text](./file_structure.png)
+![Alt Text](`file_structure.png`)
 ## Instructions
 1. Setup the project according to [setup.md](docs/setup.md)
 2. If you have any doubts in the source code [docs](docs/)

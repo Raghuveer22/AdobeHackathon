@@ -38,10 +38,11 @@ project/
 │   ├── LogFile.log (File generated after file_extraction.py)
 │   ├── failed_files.txt (File generated after executing file_extraction.py)
 │   ├── invoice.json (File generated after executing file_extraction.py)
-│   ├── exception.json (File generated after executing exception_handler.py)
-│   └── output.csv (File generated after executing data_processing.py)
+│   └── exception.json (File generated after executing exception_handler.py)
+│
 ├── pdfservices-api-credentials.json(You have to setup according setup.md)
 ├── private.key(You have to setup according setup.md)
+├── output.csv (File generated after executing data_processing.py)
 └── README.md
 ```
 ![Alt Text](./file_structure.png)
